@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wizard.Controller">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Please select your application's language" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <ChoiceBox fx:id="languages" prefWidth="150.0" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="20.0" layoutY="110.0" spacing="10.0">
+               <children>
+                  <TextField fx:id="projectLocation" prefWidth="200.0" promptText="Please Select Project Location" />
+                  <Button fx:id="browseButton" mnemonicParsing="false" onAction="#onButtonClickedBrowse" text="Browse" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Select a Default Pipeline stages template or create a custom one" wrapText="true" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <VBox spacing="10.0">
+                     <children>
+                        <ChoiceBox fx:id="stageTemplates" prefWidth="150.0" />
+                        <CheckBox fx:id="buildCheckBox" mnemonicParsing="false" onAction="#onCheckBoxClicked" text="Build Stage" userData="0" />
+                        <CheckBox fx:id="staticCheckBox" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" onAction="#onCheckBoxClicked" text="Static Analysis Stage" userData="1" />
+                        <CheckBox fx:id="unitCheckBox" layoutX="10.0" layoutY="52.0" mnemonicParsing="false" onAction="#onCheckBoxClicked" text="Unit Testing Stage" userData="2" />
+                        <CheckBox fx:id="integrationCheckBox" layoutX="10.0" layoutY="69.0" mnemonicParsing="false" onAction="#onCheckBoxClicked" text="Integration Testing" userData="3" />
+                        <CheckBox fx:id="stageCheckBox" layoutX="10.0" layoutY="86.0" mnemonicParsing="false" onAction="#onCheckBoxClicked" text="Staging Stage" userData="4" />
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets top="50.0" />
+         </BorderPane.margin>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onButtonClickedCancel" prefWidth="75.0" text="Cancel" />
+            <Button fx:id="helpButton" layoutX="430.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedHelp" prefWidth="75.0" text="Help" />
+            <Button fx:id="finishButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedFinish" prefWidth="75.0" text="Finish" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+   <left>
+      <ImageView fitHeight="300.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@cdep_logo_with_mario.png" />
+         </image>
+      </ImageView>
+   </left>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</BorderPane>
