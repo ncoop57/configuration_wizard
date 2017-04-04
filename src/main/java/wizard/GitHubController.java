@@ -180,7 +180,7 @@ public class GitHubController
         {
 
             GHTeam team = this.organization.createTeam("Team" + i, GHOrganization.Permission.PULL);
-            team.add(github.getUser("ncoop57"));
+            team.add(github.getUser(this.username));
             team.add(repositories.get(i - 1));
             System.out.println("Setting up team...");
 

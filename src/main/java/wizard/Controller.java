@@ -38,13 +38,16 @@ public class Controller
     private ChoiceBox languages;
 
     @FXML
-    private Button browseButton;
-
-    @FXML
     private TextField projectLocation;
 
     @FXML
+    private Button browseButton;
+
+    @FXML
     private Button cancelButton;
+
+    @FXML
+    private Button previousButton;
 
     @FXML
     private Button helpButton;
@@ -173,7 +176,7 @@ public class Controller
 
         DirectoryChooser directoryChooser = new DirectoryChooser();
 
-        directoryChooser.setTitle("Open Resource File");
+        directoryChooser.setTitle("Select Project Directory");
         File directorySelected = directoryChooser.showDialog(this.stage);
 
         if (directorySelected != null)
@@ -223,12 +226,17 @@ public class Controller
 
     }
 
-
-
-    private void onButtonClickedPrevious()
+    @FXML
+    private void onButtonClickedPrevious() throws Exception
     {
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/setup_scene.fxml"));
+        Parent root = loader.load();
 
+        SetUpController controller = (SetUpController) loader.getController();
+        controller.setStage(this.stage);
+
+        this.stage.getScene().setRoot(root);
 
     }
 

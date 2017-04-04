@@ -17,7 +17,7 @@
          <children>
             <Region HBox.hgrow="ALWAYS" />
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onButtonClickedCancel" prefWidth="75.0" text="Cancel" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefWidth="75.0" text="Help" />
+            <Button fx:id="helpButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedHelp" prefWidth="75.0" text="Help" />
             <Button fx:id="nextButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedNext" prefWidth="75.0" text=" Next" />
          </children>
       </HBox>
@@ -42,7 +42,7 @@
                <children>
                   <Label text="Personal Access Token:" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField />
+                  <TextField fx:id="personalAccessToken" />
                </children>
                <VBox.margin>
                   <Insets />
@@ -51,11 +51,21 @@
                   <Insets left="10.0" />
                </padding>
             </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Organization Owner's Username:" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="ownerUsername" />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
             <HBox layoutX="10.0" layoutY="10.0" spacing="10.0">
                <children>
                   <Label text="Organization URL:" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField />
+                  <TextField fx:id="organizationURL" />
                </children>
                <padding>
                   <Insets left="10.0" />
@@ -65,7 +75,16 @@
                <children>
                   <Label text="Number of Repositories:" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField />
+                  <TextField fx:id="numOfRepositories" />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <TextField fx:id="usernamesFile" prefWidth="200.0" promptText="Please Select Username List File" />
+                  <Button fx:id="browseButton" mnemonicParsing="false" onAction="#onButtonClickedBrowse" text="Browse" />
                </children>
                <padding>
                   <Insets left="10.0" />

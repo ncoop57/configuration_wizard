@@ -72,6 +72,7 @@
          <children>
             <Region HBox.hgrow="ALWAYS" />
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onButtonClickedCancel" prefWidth="75.0" text="Cancel" />
+            <Button fx:id="previousButton" layoutX="345.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedPrevious" prefWidth="75.0" text="Previous" />
             <Button fx:id="helpButton" layoutX="430.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedHelp" prefWidth="75.0" text="Help" />
             <Button fx:id="finishButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedFinish" prefWidth="75.0" text="Finish" />
          </children>
