@@ -63,9 +63,19 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="10.0" spacing="10.0">
                <children>
-                  <Label text="Organization URL:" />
+                  <Label text="Organization Name:" />
                   <Region HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="organizationURL" />
+                  <TextField fx:id="organizationName" />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="120.0" spacing="10.0">
+               <children>
+                  <Label text="WebHook URL:" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="webhookURL" />
                </children>
                <padding>
                   <Insets left="10.0" />

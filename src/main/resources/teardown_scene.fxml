@@ -11,14 +11,14 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wizard.SetUpController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="wizard.TearDownController">
    <bottom>
       <HBox spacing="10.0" BorderPane.alignment="CENTER">
          <children>
             <Region HBox.hgrow="ALWAYS" />
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onButtonClickedCancel" prefWidth="75.0" text="Cancel" />
             <Button fx:id="helpButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedHelp" prefWidth="75.0" text="Help" />
-            <Button fx:id="nextButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedNext" prefWidth="75.0" text=" Next" />
+            <Button fx:id="finishButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedFinish" prefWidth="75.0" text="Finish" />
          </children>
       </HBox>
    </bottom>
@@ -86,15 +86,6 @@
                   <Label text="Number of Repositories:" />
                   <Region HBox.hgrow="ALWAYS" />
                   <TextField fx:id="numOfRepositories" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </HBox>
-            <HBox spacing="10.0">
-               <children>
-                  <TextField fx:id="usernamesFile" prefWidth="200.0" promptText="Please Select Username List File" />
-                  <Button fx:id="browseButton" mnemonicParsing="false" onAction="#onButtonClickedBrowse" text="Browse" />
                </children>
                <padding>
                   <Insets left="10.0" />

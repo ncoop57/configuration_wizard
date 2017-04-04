@@ -17,10 +17,10 @@ public class Main extends Application {
 
         this.stage = primaryStage;
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/setup_scene.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/start_scene.fxml"));
         Parent root = loader.load();
 
-        SetUpController controller = (SetUpController) loader.getController();
+        StartController controller = (StartController) loader.getController();
         controller.setStage(primaryStage); // or what you want to do
 
         primaryStage.setTitle("CDEP Configuration Wizard");

@@ -5,17 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.xml.soap.Text;
 import java.io.File;
 
 /**
  * Created by natha on 3/29/2017.
  */
-public class SetUpController implements IController
+public class TearDownController implements IController
 {
 
     private Stage stage;
@@ -48,7 +46,7 @@ public class SetUpController implements IController
     private Button helpButton;
 
     @FXML
-    private Button nextButton;
+    private Button finishButton;
 
     @FXML
     private void initialize()
@@ -98,7 +96,7 @@ public class SetUpController implements IController
     }
 
     @FXML
-    private void onButtonClickedNext() throws Exception
+    private void onButtonClickedFinish() throws Exception
     {
 
         // Test auth token: 16e242ed7cbe49bd667b245eb7a1490f45a44054
@@ -108,14 +106,10 @@ public class SetUpController implements IController
                                                                  Integer.parseInt(this.numOfRepositories.getText()),
                                                                  this.webhookURL.getText());
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/config_scene.fxml"));
-        Parent root = loader.load();
+        gitHubController.removeRepos();
+        gitHubController.removeTeams();
 
-        Controller controller = (Controller) loader.getController();
-        controller.setStage(this.stage);
-        controller.setGitHubController(gitHubController);
-
-        this.stage.getScene().setRoot(root);
+        System.exit(0);
 
     }
 

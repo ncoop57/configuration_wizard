@@ -43,14 +43,14 @@ public class GitHubController
 
     }
 
-    public static void main(String[] args)
+    /*public static void main(String[] args)
     {
 
         try
         {
             /*
             // Set up the credentials for the API to use using AuthO token with github
-            github = GitHub.connect("nathanacooper", "0fdba8e3382f113b231515292393706d352848aa");
+            github = GitHub.connect("nathanacooper", "16e242ed7cbe49bd667b245eb7a1490f45a44054");
             org = github.getOrganization("DevOps-Pipeline");
             DevopsConf.createRepos();
             DevopsConf.setUpRepositories();
@@ -64,20 +64,20 @@ public class GitHubController
             //GHTeam team = org.createTeam("Team3", GHOrganization.Permission.PULL);
             //team.add(github.getUser("nathanacooper"));
             //team.add(repo);
-            github.checkApiUrlValidity();*/
+            github.checkApiUrlValidity();
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
         System.out.println("Hello, World!");
-    }
+    }*/
 
     /**
      * Creates github repositories under a specific organization
      * @throws IOException
      */
-    private void createRepos() throws IOException
+    public void createRepos() throws IOException
     {
 
         for (int i = 1; i <= this.numOfRepositories; i++)
@@ -96,7 +96,7 @@ public class GitHubController
      * @throws GitAPIException
      * @throws IOException
      */
-    private void setUpRepositories(String path) throws GitAPIException, IOException
+    public void setUpRepositories(String path) throws GitAPIException, IOException
     {
 
         for (int i = 1; i <= this.numOfRepositories; i++)
@@ -121,7 +121,7 @@ public class GitHubController
      * @throws IOException
      */
     @SuppressWarnings("unused")
-    private void createWebhook(String url) throws GitAPIException, IOException
+    public void createWebhook() throws GitAPIException, IOException
     {
 
         Authenticator.setDefault (new Authenticator() {
@@ -153,7 +153,7 @@ public class GitHubController
      * @throws IOException
      */
     @SuppressWarnings("unused")
-    private void removeRepos() throws IOException
+    public void removeRepos() throws IOException
     {
 
         for (int i = 1; i <= this.numOfRepositories; i++)
@@ -173,7 +173,7 @@ public class GitHubController
      * Creates and populates the team with members and assigns the team a repository
      * @throws IOException
      */
-    private void setUpTeams() throws IOException
+    public void setUpTeams() throws IOException
     {
 
         for (int i = 1; i <= this.numOfRepositories; i++)
@@ -193,7 +193,7 @@ public class GitHubController
      * @throws IOException
      */
     @SuppressWarnings("unused")
-    private void removeTeams() throws IOException
+    public void removeTeams() throws IOException
     {
 
         for (int i = 1; i <= this.numOfRepositories; i++)

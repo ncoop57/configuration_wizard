@@ -22,11 +22,12 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.util.*;
 
-public class Controller
+public class Controller implements IController
 {
 
     private Pipeline pipeline;
     private Stage stage;
+    private GitHubController controller;
     private ObservableList<String> languagesList = FXCollections.observableArrayList("Select a Language", "Java", "PHP");
     private ObservableList<String> stageTemplatesList = FXCollections.observableArrayList("Select a Template", "Testing", "Release");
     private ObservableSet<CheckBox> selectedCheckBoxes = FXCollections.observableSet();
@@ -269,6 +270,13 @@ public class Controller
     {
 
         this.stage = stage;
+
+    }
+
+    public void setGitHubController(GitHubController controller)
+    {
+
+        this.controller = controller;
 
     }
 
