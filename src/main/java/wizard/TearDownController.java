@@ -43,6 +43,9 @@ public class TearDownController implements IController
     private Button cancelButton;
 
     @FXML
+    private Button previousButton;
+
+    @FXML
     private Button helpButton;
 
     @FXML
@@ -82,6 +85,20 @@ public class TearDownController implements IController
     }
 
     @FXML
+    private void onButtonClickedPrevious() throws Exception
+    {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/start_scene.fxml"));
+        Parent root = loader.load();
+
+        StartController controller = (StartController) loader.getController();
+        controller.setStage(this.stage);
+
+        this.stage.getScene().setRoot(root);
+
+    }
+
+    @FXML
     private void onButtonClickedHelp()
     {
 
@@ -99,15 +116,26 @@ public class TearDownController implements IController
     private void onButtonClickedFinish() throws Exception
     {
 
-        // Test auth token: 16e242ed7cbe49bd667b245eb7a1490f45a44054
+        // Test auth token: b630fd4eb8145ff25c712daa67997a8367e64ce2
         GitHubController gitHubController = new GitHubController(this.ownerUsername.getText(),
                                                                  this.personalAccessToken.getText(),
                                                                  this.organizationName.getText(),
                                                                  Integer.parseInt(this.numOfRepositories.getText()),
-                                                                 this.webhookURL.getText());
+                                                                 "");
 
-        gitHubController.removeRepos();
-        gitHubController.removeTeams();
+        try
+        {
+
+            gitHubController.removeRepos();
+            gitHubController.removeTeams();
+
+        }
+        catch(Exception e)
+        {
+
+            e.printStackTrace();
+
+        }
 
         System.exit(0);
 

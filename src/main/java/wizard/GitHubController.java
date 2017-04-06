@@ -27,6 +27,7 @@ public class GitHubController
     private static ArrayList<GHRepository> repositories = new ArrayList<GHRepository>();
     private GitHub github;
     private GHOrganization organization;
+    private String orgName;
 
     public GitHubController(String username, String personalToken, String orgName, int numOfRepositories, String webhookURL) throws Exception
     {
@@ -35,6 +36,7 @@ public class GitHubController
         this.personalToken = personalToken;
 
         this.github = GitHub.connect(username, personalToken);
+        this.orgName = orgName;
         this.organization = github.getOrganization(orgName);
         this.numOfRepositories = numOfRepositories;
         this.webhookURL = webhookURL;
@@ -105,7 +107,7 @@ public class GitHubController
             Git git = Git.open(new File(path));
             git.push()
                     .setCredentialsProvider( new UsernamePasswordCredentialsProvider(this.username, this.personalToken))
-                    .setRemote(String.format("https://github.com/%s/Repo%d.git", this.organization.getName(), i))
+                    .setRemote(String.format("https://github.com/%s/Repo%d.git", this.orgName, i))
                     .setPushAll()
                     .call();
             System.out.println("Setting up repo...");
@@ -130,7 +132,7 @@ public class GitHubController
             }
         });
 
-        HttpURLConnection con = (HttpURLConnection) new URL(String.format("https://api.github.com/orgs/%s/hooks", this.organization.getName())).openConnection();
+        HttpURLConnection con = (HttpURLConnection) new URL(String.format("https://api.github.com/orgs/%s/hooks", this.orgName)).openConnection();
         String userPassword = this.username + ":" + this.personalToken;
         String encoding = new sun.misc.BASE64Encoder().encode(userPassword.getBytes());
 
@@ -141,7 +143,7 @@ public class GitHubController
                                                 + "`name`: `web`,"
                                                 + "`active`: true,"
                                                 + "`events`: [`push`],"
-                                                + "config: {"
+                                                + "`config`: {"
                                                 + "`url`: `%s`"
                                                 + "}", this.webhookURL).replace('`', '"').getBytes("UTF-8"));
         con.getInputStream();

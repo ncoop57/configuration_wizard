@@ -17,6 +17,7 @@
          <children>
             <Region HBox.hgrow="ALWAYS" />
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onButtonClickedCancel" prefWidth="75.0" text="Cancel" />
+            <Button fx:id="previousButton" layoutX="345.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedPrevious" prefWidth="75.0" text="Previous" />
             <Button fx:id="helpButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedHelp" prefWidth="75.0" text="Help" />
             <Button fx:id="finishButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onButtonClickedFinish" prefWidth="75.0" text="Finish" />
          </children>
@@ -66,16 +67,6 @@
                   <Label text="Organization Name:" />
                   <Region HBox.hgrow="ALWAYS" />
                   <TextField fx:id="organizationName" />
-               </children>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </HBox>
-            <HBox layoutX="10.0" layoutY="120.0" spacing="10.0">
-               <children>
-                  <Label text="WebHook URL:" />
-                  <Region HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="webhookURL" />
                </children>
                <padding>
                   <Insets left="10.0" />

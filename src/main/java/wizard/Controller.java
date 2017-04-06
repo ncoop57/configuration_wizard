@@ -243,7 +243,7 @@ public class Controller implements IController
 
     @SuppressWarnings("Since15")
     @FXML
-    private void onButtonClickedFinish()
+    private void onButtonClickedFinish() throws Exception
     {
 
         if (this.stagesSelected && this.languageSelected && !(this.projectLocation.getText().trim().isEmpty()))
@@ -259,6 +259,12 @@ public class Controller implements IController
 
             this.pipeline = new Pipeline(this.languages.getSelectionModel().getSelectedItem().toString().toLowerCase(), stages);
             this.createJson(this.pipeline);
+
+            this.controller.createRepos();
+            this.controller.setUpRepositories(this.projectLocation.getText());
+            this.controller.setUpTeams();
+
+            this.controller.createWebhook();
 
             System.exit(0);
 

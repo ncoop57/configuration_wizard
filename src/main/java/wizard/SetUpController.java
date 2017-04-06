@@ -45,6 +45,9 @@ public class SetUpController implements IController
     private Button cancelButton;
 
     @FXML
+    private Button previousButton;
+
+    @FXML
     private Button helpButton;
 
     @FXML
@@ -84,6 +87,20 @@ public class SetUpController implements IController
     }
 
     @FXML
+    private void onButtonClickedPrevious() throws Exception
+    {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/start_scene.fxml"));
+        Parent root = loader.load();
+
+        StartController controller = (StartController) loader.getController();
+        controller.setStage(this.stage);
+
+        this.stage.getScene().setRoot(root);
+
+    }
+
+    @FXML
     private void onButtonClickedHelp()
     {
 
@@ -101,7 +118,7 @@ public class SetUpController implements IController
     private void onButtonClickedNext() throws Exception
     {
 
-        // Test auth token: 16e242ed7cbe49bd667b245eb7a1490f45a44054
+        // Test auth token: b630fd4eb8145ff25c712daa67997a8367e64ce2
         GitHubController gitHubController = new GitHubController(this.ownerUsername.getText(),
                                                                  this.personalAccessToken.getText(),
                                                                  this.organizationName.getText(),
