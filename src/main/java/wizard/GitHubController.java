@@ -21,6 +21,7 @@ public class GitHubController
 
     private String username;
     private String personalToken;
+    private ArrayList<String> userNames;
 
     private int numOfRepositories = 10;
     private String webhookURL;
@@ -28,11 +29,13 @@ public class GitHubController
     private GitHub github;
     private GHOrganization organization;
     private String orgName;
+    private String prefix;
 
-    public GitHubController(String username, String personalToken, String orgName, int numOfRepositories, String webhookURL) throws Exception
+    public GitHubController(String username, String personalToken, String orgName, int numOfRepositories, String webhookURL, String prefix, ArrayList<String> userNames) throws Exception
     {
 
         this.username = username;
+        this.userNames = userNames;
         this.personalToken = personalToken;
 
         this.github = GitHub.connect(username, personalToken);
@@ -40,6 +43,7 @@ public class GitHubController
         this.organization = github.getOrganization(orgName);
         this.numOfRepositories = numOfRepositories;
         this.webhookURL = webhookURL;
+        this.prefix = prefix;
 
         github.checkApiUrlValidity();
 
@@ -85,7 +89,7 @@ public class GitHubController
         for (int i = 1; i <= this.numOfRepositories; i++)
         {
 
-            GHCreateRepositoryBuilder builder = this.organization.createRepository("Repo" + i);
+            GHCreateRepositoryBuilder builder = this.organization.createRepository(this.prefix + i);
             repositories.add(builder.create());
             System.out.println("Creating repo...");
 
@@ -107,7 +111,7 @@ public class GitHubController
             Git git = Git.open(new File(path));
             git.push()
                     .setCredentialsProvider( new UsernamePasswordCredentialsProvider(this.username, this.personalToken))
-                    .setRemote(String.format("https://github.com/%s/Repo%d.git", this.orgName, i))
+                    .setRemote(String.format("https://github.com/%s/%s%d.git", this.orgName, this.prefix, i))
                     .setPushAll()
                     .call();
             System.out.println("Setting up repo...");
@@ -161,7 +165,7 @@ public class GitHubController
         for (int i = 1; i <= this.numOfRepositories; i++)
         {
 
-            GHRepository repo = this.organization.getRepository("Repo" + i);
+            GHRepository repo = this.organization.getRepository(this.prefix + i);
             repo.delete();
             System.out.println("Deleting repo...");
 
@@ -181,8 +185,11 @@ public class GitHubController
         for (int i = 1; i <= this.numOfRepositories; i++)
         {
 
-            GHTeam team = this.organization.createTeam("Team" + i, GHOrganization.Permission.PULL);
+            GHTeam team = this.organization.createTeam(this.prefix + i, GHOrganization.Permission.PUSH);
             team.add(github.getUser(this.username));
+            team.add(github.getUser("vcdep"));
+            if (i - 1 < this.userNames.size())
+                team.add(github.getUser(this.userNames.get(i - 1)));
             team.add(repositories.get(i - 1));
             System.out.println("Setting up team...");
 
@@ -201,7 +208,7 @@ public class GitHubController
         for (int i = 1; i <= this.numOfRepositories; i++)
         {
 
-            GHTeam team = this.organization.getTeamByName("Team" + i);
+            GHTeam team = this.organization.getTeamByName(this.prefix + i);
             team.delete();
             System.out.println("Deleting team...");
 

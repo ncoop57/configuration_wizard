@@ -28,16 +28,10 @@ public class TearDownController implements IController
     private TextField organizationName;
 
     @FXML
-    private TextField webhookURL;
-
-    @FXML
     private TextField numOfRepositories;
 
     @FXML
-    private TextField usernamesFile;
-
-    @FXML
-    private Button browseButton;
+    private TextField prefixRepo;
 
     @FXML
     private Button cancelButton;
@@ -56,23 +50,6 @@ public class TearDownController implements IController
     {
 
 
-
-    }
-
-    @FXML
-    private void onButtonClickedBrowse()
-    {
-
-        FileChooser fileChooser = new FileChooser();
-
-        fileChooser.setTitle("Open Resource File");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Text Files", "*.txt"));
-
-        File fileSelected = fileChooser.showOpenDialog(this.stage);
-
-        if (fileSelected != null)
-            this.usernamesFile.setText(fileSelected.toString());
 
     }
 
@@ -116,12 +93,14 @@ public class TearDownController implements IController
     private void onButtonClickedFinish() throws Exception
     {
 
-        // Test auth token: b630fd4eb8145ff25c712daa67997a8367e64ce2
+        // Test auth token: 6eeb86a1927d17ce53b1cbe649fd42b3996cc011
         GitHubController gitHubController = new GitHubController(this.ownerUsername.getText(),
                                                                  this.personalAccessToken.getText(),
                                                                  this.organizationName.getText(),
                                                                  Integer.parseInt(this.numOfRepositories.getText()),
-                                                                 "");
+                                                                 "",
+                                                                 this.prefixRepo.getText(),
+                                                                 null);
 
         try
         {

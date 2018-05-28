@@ -82,6 +82,16 @@
                   <Insets left="10.0" />
                </padding>
             </HBox>
+            <HBox layoutX="10.0" layoutY="175.0" spacing="10.0">
+               <children>
+                  <Label text="Repository Name Prefix:" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="prefixRepo" />
+               </children>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </HBox>
          </children>
       </VBox>
    </center>

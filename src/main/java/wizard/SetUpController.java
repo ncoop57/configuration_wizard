@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 
 import javax.xml.soap.Text;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by natha on 3/29/2017.
@@ -34,6 +38,9 @@ public class SetUpController implements IController
 
     @FXML
     private TextField numOfRepositories;
+
+    @FXML
+    private TextField prefixRepo;
 
     @FXML
     private TextField usernamesFile;
@@ -114,16 +121,36 @@ public class SetUpController implements IController
 
     }
 
+    private ArrayList<String> getUserNames() {
+        ArrayList<String> userNames = new ArrayList<>();
+        try
+        {
+            Scanner sc = new Scanner(new File(this.usernamesFile.getText()));
+            while(sc.hasNextLine()) {
+                userNames.add(sc.nextLine());
+            }
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+
+        return userNames;
+    }
+
     @FXML
     private void onButtonClickedNext() throws Exception
     {
 
-        // Test auth token: b630fd4eb8145ff25c712daa67997a8367e64ce2
+        ArrayList<String> usernames = this.getUserNames();
+
         GitHubController gitHubController = new GitHubController(this.ownerUsername.getText(),
                                                                  this.personalAccessToken.getText(),
                                                                  this.organizationName.getText(),
                                                                  Integer.parseInt(this.numOfRepositories.getText()),
-                                                                 this.webhookURL.getText());
+                                                                 this.webhookURL.getText(),
+                                                                 this.prefixRepo.getText(),
+                                                                 usernames);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/config_scene.fxml"));
         Parent root = loader.load();
@@ -133,7 +160,6 @@ public class SetUpController implements IController
         controller.setGitHubController(gitHubController);
 
         this.stage.getScene().setRoot(root);
-
     }
 
     public void setStage(Stage stage)
