@@ -187,7 +187,6 @@ public class GitHubController
 
             GHTeam team = this.organization.createTeam(this.prefix + i, GHOrganization.Permission.PUSH);
             team.add(github.getUser(this.username));
-            team.add(github.getUser("vcdep"));
             if (i - 1 < this.userNames.size())
                 team.add(github.getUser(this.userNames.get(i - 1)));
             team.add(repositories.get(i - 1));
